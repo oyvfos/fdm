@@ -3,6 +3,7 @@ package de.grogra.numeric.cvode;
 import java.util.Arrays;
 import java.util.List;
 
+import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
@@ -22,7 +23,7 @@ public class N_Vector extends Structure {
 			Structure.ByReference {
 	}
 
-	public Pointer content;
+	public Pointer content	;
 	public Pointer ops;
 
 	@Override
@@ -64,7 +65,7 @@ public class N_Vector extends Structure {
 	{
 		_N_VectorContent_Serial content = new _N_VectorContent_Serial(this.content);
 		content.read();
-		return content.data.getDouble(8*index);
+		return content.data.getDouble(Native.getNativeSize(Double.TYPE)*index);
 	}
 	
 	/**
@@ -76,7 +77,7 @@ public class N_Vector extends Structure {
 	{
 		_N_VectorContent_Serial content = new _N_VectorContent_Serial(this.content);
 		content.read();
-		content.data.setDouble(8*index, value);
+		content.data.setDouble(Native.getNativeSize(Double.TYPE)*index, value);
 	}
 	
 	/**
@@ -102,6 +103,6 @@ public class N_Vector extends Structure {
 		content.read();
 		final int N = (int)content.length.longValue();
 		assert data.length == N;
-		content.data.write(0, data, 0, N);
+		content.data.write(0, data, 0, 1);
 	}
 }

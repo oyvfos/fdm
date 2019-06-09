@@ -1,6 +1,6 @@
 package de.grogra.numeric;
 
-import static de.grogra.numeric.cvode.CVODE.CVDense;
+//import static de.grogra.numeric.cvode.CVODE.CVDense;
 import static de.grogra.numeric.cvode.CVODE.CV_BDF;
 import static de.grogra.numeric.cvode.CVODE.CV_NEWTON;
 import static de.grogra.numeric.cvode.CVODE.CV_NORMAL;
@@ -181,7 +181,7 @@ public class CVodeAdapter implements FirstOrderIntegrator {
 			// TODO
 
 			// set linear solver for newton iteration
-			flag = CVDense(cvode_mem, N);
+			//flag = CVDense(cvode_mem, N);
 		/* checkFlag(flag, "could not set linear solver"); */
 			
 			// set linear solver optional inputs

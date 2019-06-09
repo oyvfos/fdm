@@ -49,6 +49,7 @@ public class CVODE {
 		if(N_Vec_Serial.LOADED){
 			//System.out.println("N_Vec_Serial loaded");
 			Native.register("sundials_cvode");
+			
 			//System.out.println("cvode loaded");
 		} else {
 			System.out.println("N_Vec_Serial not loaded");
@@ -127,13 +128,15 @@ public class CVODE {
 
 	public static native int CVodeInit(Pointer cvode_mem, CVRhsFn f, double t0, N_Vector y0);
 	
+	public static native int CVodeSetNonlinearSolver(Pointer cvode_mem,Pointer NLS);
+	
 	public static native void CVodeFree(PointerByReference cvode_mem);
 	
 	public static native int CVodeSStolerances(Pointer cvode_mem, double reltol, double abstol);
 	public static native int CVodeSVtolerances(Pointer cvode_mem, double reltol, N_Vector abstol);
 //	public static native int CVodeWFtolerances(Pointer cvode_mem, ...);
 	
-	public static native int CVDense(Pointer cvode_mem, int N);
+	//public static native int CVDense(Pointer cvode_mem, int N);
 //	public static native int CVLapackDense(Pointer cvode_mem, int N);
 //	public static native int CVBand(Pointer cvode_mem, int N, int mupper, int mlower);
 //	public static native int CVLapackBand(Pointer cvode_mem, int N, int mupper, int mlower);
